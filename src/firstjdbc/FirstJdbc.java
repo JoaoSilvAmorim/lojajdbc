@@ -18,6 +18,7 @@ public class FirstJdbc {
 	public static void main(String[] args) {
 
 		
+		
 		//Pessoa p = new Pessoa("Joao silva");
 		ConnectionFactory connection = new ConnectionFactory();
 		
@@ -27,7 +28,7 @@ public class FirstJdbc {
 		Produto p = new Produto("Farinha", "Branca", 5.5);
 		FuncionarioDAO fd = new FuncionarioDAO();
 		Funcionario f = new Funcionario(800, "gestor", "railan", 22);
-		ProdutoDAO d = new ProdutoDAO();
+		ProdutoDAO d = new ProdutoDAO(); 
 		//System.out.println();
 		//ArrayList<Pessoa> arr = d.list();
 		fd.create(f);
