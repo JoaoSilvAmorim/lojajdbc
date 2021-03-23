@@ -5,6 +5,7 @@ public class Produto {
 	private String nome;
 	private String descricao;
 	private double preco;
+	private int id;
 	
 	
 	public Produto() {/* constructor empty */} 
@@ -44,6 +45,15 @@ public class Produto {
 
 	public void setPreco(double preco) {
 		this.preco = preco;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public int getId() {
+		return id;
 	}
 	
 	

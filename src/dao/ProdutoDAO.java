@@ -7,19 +7,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import beans.Pessoa;
+import beans.Produto;
 import connection.ConnectionFactory;
 
 public class ProdutoDAO {
 
-	public void create(Pessoa p) {
+	public void create(Produto p) {
 
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
 
-			stmt = con.prepareStatement("INSERT INTO pessoa (nome) VALUES (?)");
+			stmt = con.prepareStatement("INSERT INTO produto (nome, descricao, preco) VALUES (?,?,?)");
 			stmt.setString(1, p.getNome());
+			stmt.setString(2, p.getDescricao());
+			stmt.setDouble(3, p.getPreco());
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -30,22 +33,24 @@ public class ProdutoDAO {
 
 	}
 
-	public ArrayList<Pessoa> list() {
+	public ArrayList<Produto> list() {
 
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		ArrayList<Pessoa> arr = new ArrayList<Pessoa>();
+		ArrayList<Produto> arr = new ArrayList<Produto>();
 
 		try {
 
-			stmt = con.prepareStatement("SELECT * FROM pessoa");
+			stmt = con.prepareStatement("SELECT * FROM produto");
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				Pessoa p = new Pessoa();
+				Produto p = new Produto();
+				p.setId(rs.getInt("id"));
 				p.setNome(rs.getString("nome"));
-				p.setIdade(rs.getInt("id"));
+				p.setDescricao(rs.getString("descricao"));
+				p.setPreco(rs.getDouble("preco"));
 				arr.add(p);
 			}
 
@@ -57,22 +62,22 @@ public class ProdutoDAO {
 
 		return arr;
 	}
-	
+	/*
 	// Incomplete krai
 	public void update(Pessoa p) {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		
 		
-	}
+	}*/
 
-	public void delete(Pessoa p) {
+	public void delete(Produto p) {
 		
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
-			stmt = con.prepareStatement("DELETE FROM pessoa where id = " + p.getIdade());
+			stmt = con.prepareStatement("DELETE FROM produto where id = " + p.getId());
 			stmt.execute();
 
 		} catch (SQLException e) {

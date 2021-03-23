@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import connection.ConnectionFactory;
 import beans.Funcionario;
 import beans.Pessoa;
+import beans.Produto;
+import dao.FuncionarioDAO;
 import dao.ProdutoDAO;
 
 
@@ -17,16 +19,18 @@ public class FirstJdbc {
 
 		
 		//Pessoa p = new Pessoa("Joao silva");
-		//ConnectionFactory connection = new ConnectionFactory();
+		ConnectionFactory connection = new ConnectionFactory();
 		
 		//Connection con = connection.getConnection();
 		//connection.closeConnection(con);
 		
-		Pessoa p = new Pessoa("Joao", 7);
+		Produto p = new Produto("Farinha", "Branca", 5.5);
+		FuncionarioDAO fd = new FuncionarioDAO();
+		Funcionario f = new Funcionario(800, "gestor", "railan", 22);
 		ProdutoDAO d = new ProdutoDAO();
-		
+		//System.out.println();
 		//ArrayList<Pessoa> arr = d.list();
-		d.delete(p);
+		fd.create(f);
 		//System.out.println(arr);
 		//System.out.println("ola");
 		
