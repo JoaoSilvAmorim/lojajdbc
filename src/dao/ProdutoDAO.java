@@ -62,14 +62,28 @@ public class ProdutoDAO {
 
 		return arr;
 	}
-	/*
-	// Incomplete krai
-	public void update(Pessoa p) {
+	
+	
+	public void update(Produto p) {
+		
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		
-		
-	}*/
+		try {
+			
+			stmt = con.prepareStatement("UPDATE produto SET descricao = ?, preco = ? WHERE id = " + p.getId());
+			stmt.setString(1, p.getDescricao());
+			stmt.setDouble(2, p.getPreco());
+			
+			stmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException();
+		}finally {
+			ConnectionFactory.closeConnection(con, stmt);
+		}
+	}
 
 	public void delete(Produto p) {
 		
@@ -77,7 +91,7 @@ public class ProdutoDAO {
 		PreparedStatement stmt = null;
 
 		try {
-			stmt = con.prepareStatement("DELETE FROM produto where id = " + p.getId());
+			stmt = con.prepareStatement("DELETE FROM produto WHERE id = " + p.getId());
 			stmt.execute();
 
 		} catch (SQLException e) {

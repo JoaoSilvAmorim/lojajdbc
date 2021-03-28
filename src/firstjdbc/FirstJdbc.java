@@ -31,7 +31,10 @@ public class FirstJdbc {
 		ProdutoDAO d = new ProdutoDAO(); 
 		//System.out.println();
 		//ArrayList<Pessoa> arr = d.list();
-		fd.create(f);
+		//fd.create(f);
+		p.setId(1);
+		p.setDescricao("Azul");
+		d.update(p);
 		//System.out.println(arr);
 		//System.out.println("ola");
 		

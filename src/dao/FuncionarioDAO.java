@@ -71,19 +71,17 @@ public class FuncionarioDAO {
 
 		return null;
 	}
-	
-	
+
 	public void delete(Funcionario f) {
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
-		
+
 		try {
-			stmt = con.prepareStatement("DELETE FROM funcionario where id = " + f.getId());
+			stmt = con.prepareStatement("DELETE FROM funcionario WHERE id = " + f.getId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException("Erro!!!", e);
 		}
 	}
-	
-	
+
 }
